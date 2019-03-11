@@ -9,12 +9,19 @@ function getRepoContributors(repoOwner, repoName, cb) {
     url: "https://api.github.com/repos/" + repoOwner + "/" + repoName + "/contributors",
     headers: {
       'User-Agent': 'request',
-      'Authorization': secrets.GITHUB_TOKEN
+      'Authorization': "token " + secrets.GITHUB_TOKEN
     }
   };
 
+
+
   request(options, function(err, res, body) {
-    cb(err, body);
+    let output = JSON.parse(body)
+
+    for(key in output) {
+      console.log(output[key].avatar_url);
+    //cb(err, output);
+    }
   });
 }
 

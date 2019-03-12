@@ -11,6 +11,13 @@ function getRepoContributors(repoOwner, repoName, cb) {
     return console.log("Error input a name or repo!!!!!!!!!!!!!!!!!!!!");
   }
 
+  //function to make a directory called Avatars in the cd
+  fs.mkdir('./avatars',function(err) {
+   if (err) {
+      return console.error(err);
+   }
+  });
+
   //object to authorize the request function and its target(repoOwner/repoName)
  var options = {
     url: "https://api.github.com/repos/" + repoOwner + "/" + repoName + "/contributors",
